@@ -4,14 +4,31 @@
         return Math.floor(Math.random() * (500 - 75 + 1)) + 75;
     }
 
+    // Function to get or set view count for a product
+    function getViewCount(productId) {
+        let viewCounts = JSON.parse(localStorage.getItem('productViewCounts')) || {};
+        if (!viewCounts[productId]) {
+            viewCounts[productId] = getRandomNumber();
+            localStorage.setItem('productViewCounts', JSON.stringify(viewCounts));
+        }
+        return viewCounts[productId];
+    }
+
     // Function to create and insert the views element
     function insertViews() {
         const priceElements = document.querySelectorAll('.ProductItem-product-price');
         
         priceElements.forEach(priceElement => {
-            const randomNumber = getRandomNumber();
+            // Get the id from the price element
+            const productId = priceElement.id;
+
+            // If there's no id, generate a fallback id
+            const fallbackId = `product-${Math.random().toString(36).substr(2, 9)}`;
+            const finalProductId = productId || fallbackId;
+
+            const viewCount = getViewCount(finalProductId);
             const viewsElement = document.createElement('span');
-            viewsElement.innerHTML = '<span class="glowing-dot"></span>Views: ' + randomNumber;
+            viewsElement.innerHTML = '<span class="glowing-dot"></span>Views: ' + viewCount;
             viewsElement.className = 'views-count';
             
             // Insert the views element after the price element
