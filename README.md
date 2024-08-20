@@ -15,7 +15,7 @@ Boost your Squarespace store's conversion rates with this simple yet powerful pr
 
 ## 🎯 Purpose
 
-This script adds a view count display to your Squarespace product pages, leveraging the psychology of social proof to increase purchase intention. Research has shown that displaying view counts on Product Detail Pages (PDPs) can increase purchase intention by up to 30% [source](https://your-research-article-link-here).
+This script adds a view count display to your Squarespace product pages, leveraging the psychology of social proof to increase purchase intention. Research has shown that displaying view counts on Product Detail Pages (PDPs) can increase purchase intention by up to 30% [source](https://tips.ariyh.com/p/show-product-views-or-purchases).
 
 By showing potential customers that others are interested in the same products, you create a sense of popularity and urgency, encouraging visitors to make a purchase decision.
 
@@ -46,7 +46,7 @@ Note: These are not actual view counts, but simulated numbers for psychological 
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://your-github-repo-link/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/jlopezvaldez/square-space-product-view-count-widget/issues).
 
 ## 📝 License
 
@@ -54,9 +54,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📬 Contact
 
-Your Name - [@your_twitter](https://twitter.com/thefakejona) - email@example.com
+Your Name - [@your_twitter](https://twitter.com/thefakejona) - jlopezv0324@gmail.com
 
-Project Link: [https://github.com/yourusername/your-repo-name](https://github.com/jlopezvaldez/square-space-script)
+Project Link: [https://github.com/yourusername/your-repo-name](https://github.com/jlopezvaldez/square-space-product-view-count-widget)
 
 ---
 
