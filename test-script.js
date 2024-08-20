@@ -16,9 +16,9 @@
 
     // Function to create and insert the views element
     function insertViews() {
-        const priceElements = document.querySelectorAll('.ProductItem-product-price');
+        const priceElement = document.querySelector('.ProductItem-product-price');
         
-        priceElements.forEach(priceElement => {
+
             // Get the id from the price element
             const productId = priceElement.id;
 
@@ -33,7 +33,7 @@
             
             // Insert the views element after the price element
             priceElement.appendChild(viewsElement);
-        });
+
     }
 
     // Create a style element and add it to the head
