@@ -17,18 +17,18 @@
     // Function to create and insert the views element
     function insertViews() {
         const priceElement = document.querySelector('.ProductItem-product-price');
+        const productItemElement = document.querySelector('.ProductItem-additional');
+
+        // Get the id from the product item element
+        const productId = productItemElement.id;
+
+        const viewCount = getViewCount(productId);
+        const viewsElement = document.createElement('span');
+        viewsElement.innerHTML = '<span class="glowing-dot"></span>Views: ' + viewCount;
+        viewsElement.className = 'views-count';
         
-
-            // Get the id from the price element
-            const productId = priceElement.id;
-
-            const viewCount = getViewCount(productId);
-            const viewsElement = document.createElement('span');
-            viewsElement.innerHTML = '<span class="glowing-dot"></span>Views: ' + viewCount;
-            viewsElement.className = 'views-count';
-            
-            // Insert the views element after the price element
-            priceElement.appendChild(viewsElement);
+        // Insert the views element after the price element
+        priceElement.appendChild(viewsElement);
 
     }
 
