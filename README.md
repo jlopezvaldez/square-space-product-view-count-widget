@@ -54,9 +54,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📬 Contact
 
-Your Name - [@your_twitter](https://twitter.com/thefakejona) - jlopezv0324@gmail.com
+Your Name - [@thefakejona](https://twitter.com/thefakejona) - jlopezv0324@gmail.com
 
-Project Link: [https://github.com/yourusername/your-repo-name](https://github.com/jlopezvaldez/square-space-product-view-count-widget)
+Project Link: [Squarespace Product View Count Widget](https://github.com/jlopezvaldez/square-space-product-view-count-widget)
 
 ---
 
