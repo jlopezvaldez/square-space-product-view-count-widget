@@ -20,7 +20,7 @@
         const productItemElement = document.querySelector('.ProductItem-additional');
 
         // Get the id from the product item element
-        const productId = productItemElement.id;
+        const productId = productItemElement.firstElementChild.id;
 
         const viewCount = getViewCount(productId);
         const viewsElement = document.createElement('span');
