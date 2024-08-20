@@ -22,11 +22,7 @@
             // Get the id from the price element
             const productId = priceElement.id;
 
-            // If there's no id, generate a fallback id
-            const fallbackId = `product-${Math.random().toString(36).substr(2, 9)}`;
-            const finalProductId = productId || fallbackId;
-
-            const viewCount = getViewCount(finalProductId);
+            const viewCount = getViewCount(productId);
             const viewsElement = document.createElement('span');
             viewsElement.innerHTML = '<span class="glowing-dot"></span>Views: ' + viewCount;
             viewsElement.className = 'views-count';
