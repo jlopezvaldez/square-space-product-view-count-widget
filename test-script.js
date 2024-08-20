@@ -4,26 +4,27 @@
         return Math.floor(Math.random() * (500 - 75 + 1)) + 75;
     }
 
-    // Function to create and insert the random number element
-    function insertRandomNumber() {
+    // Function to create and insert the views element
+    function insertViews() {
         const priceElements = document.querySelectorAll('.ProductItem-product-price');
         
         priceElements.forEach(priceElement => {
             const randomNumber = getRandomNumber();
-            const randomNumberElement = document.createElement('span');
-            randomNumberElement.textContent = randomNumber;
-            randomNumberElement.className = 'random-number';
+            const viewsElement = document.createElement('span');
+            viewsElement.innerHTML = '<span class="glowing-dot"></span>Views: ' + randomNumber;
+            viewsElement.className = 'views-count';
             
-            // Insert the random number after the price element
-            priceElement.appendChild(randomNumberElement);
+            // Insert the views element after the price element
+            priceElement.appendChild(viewsElement);
         });
     }
 
     // Create a style element and add it to the head
     const style = document.createElement('style');
     style.textContent = `
-        .random-number {
-            display: inline-block;
+        .views-count {
+            display: inline-flex;
+            align-items: center;
             margin-left: 10px;
             font-size: 0.9em;
             color: #666;
@@ -32,10 +33,29 @@
             animation: fadeInUp 0.5s ease forwards;
         }
 
+        .glowing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #00ff00;
+            border-radius: 50%;
+            margin-right: 5px;
+            box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
         @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+            }
+            to {
+                box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
             }
         }
     `;
@@ -43,8 +63,8 @@
 
     // Run the insertion function when the DOM is fully loaded
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', insertRandomNumber);
+        document.addEventListener('DOMContentLoaded', insertViews);
     } else {
-        insertRandomNumber();
+        insertViews();
     }
 })();
