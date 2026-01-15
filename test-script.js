@@ -1,10 +1,11 @@
 (function() {
-    // Function to generate a random number between 75 and 500
+    // Only run on product pages
+    if (!window.location.pathname.includes('/shop/p/')) return;
+
     function getRandomNumber() {
         return Math.floor(Math.random() * (500 - 75 + 1)) + 75;
     }
 
-    // Function to get or set view count for a product
     function getViewCount(productId) {
         let viewCounts = JSON.parse(localStorage.getItem('productViewCounts')) || {};
         if (!viewCounts[productId]) {
@@ -14,25 +15,35 @@
         return viewCounts[productId];
     }
 
-    // Function to create and insert the views element
     function insertViews() {
-        const priceElement = document.querySelector('.ProductItem-product-price');
-        const productItemElement = document.querySelector('.ProductItem-additional');
+        // Don't inject twice
+        if (document.querySelector('.views-count')) return;
 
-        // Get the id from the product item element
-        const productId = productItemElement.firstElementChild.id;
+        // Try multiple possible selectors for Squarespace price elements
+        const priceElement = document.querySelector('.product-price') 
+                          || document.querySelector('.ProductItem-product-price')
+                          || document.querySelector('[data-product-price]')
+                          || document.querySelector('.sqs-money-native');
+
+        if (!priceElement) {
+            // Retry if not found yet
+            setTimeout(insertViews, 500);
+            return;
+        }
+
+        // Get product ID from URL as fallback
+        const productId = window.location.pathname.split('/').pop() || 'default';
 
         const viewCount = getViewCount(productId);
         const viewsElement = document.createElement('span');
         viewsElement.innerHTML = '<span class="glowing-dot"></span>Views: ' + viewCount;
         viewsElement.className = 'views-count';
         
-        // Insert the views element after the price element
-        priceElement.appendChild(viewsElement);
-
+        // Insert after the price element (as sibling, not child)
+        priceElement.parentNode.insertBefore(viewsElement, priceElement.nextSibling);
     }
 
-    // Create a style element and add it to the head
+    // Add styles
     const style = document.createElement('style');
     style.textContent = `
         .views-count {
@@ -45,7 +56,6 @@
             transform: translateY(10px);
             animation: fadeInUp 0.5s ease forwards;
         }
-
         .glowing-dot {
             width: 8px;
             height: 8px;
@@ -55,29 +65,26 @@
             box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
             animation: glow 1.5s ease-in-out infinite alternate;
         }
-
         @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
         @keyframes glow {
-            from {
-                box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
-            }
-            to {
-                box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
-            }
+            from { box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
+            to { box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00; }
         }
     `;
     document.head.appendChild(style);
 
-    // Run the insertion function when the DOM is fully loaded
+    // Run with retry logic
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', insertViews);
     } else {
         insertViews();
     }
+
+    // Handle Squarespace AJAX navigation
+    window.addEventListener('mercury:load', insertViews);
 })();
